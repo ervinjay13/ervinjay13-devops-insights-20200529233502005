@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import ZipResponse from "../components/ZipResponse";
 import Zip from "../components/Zip";
+import { movetoLocation } from "../components/GoogleMapContainer";
 
 function AppContainer(props) {
 	const [responseData, setResponseData] = useState("");
 
 	const handleZipChange = async (cityValue) => {
 		//console.log(`--------- fetchData called zip:${zipValue}`)
+		movetoLocation(cityValue);
 		const res = await fetch(
 			`https://api.openweathermap.org/data/2.5/weather?appid=6b7b471967dd0851d0010cdecf28f829&units=metric&q=${cityValue},nz`
 		);
